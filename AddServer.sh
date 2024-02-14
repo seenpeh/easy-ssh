@@ -2,22 +2,25 @@
 
 read -p "Enter the server ip: " ip
 
-read -p "Enter the server password: " pass
 
 read -p "Enter the server user (Enter for default 'root'): " user
 
-read -p "Enter the server name: (For example Germany1): " name
-
 if [ -z "$user" ]; then
-    user="root"
+  user="root"
 fi
+
+read -p "Enter the server name: (For example Germany1): " name
 
 echo "Host $name
   HostName $ip
   User $user" >> ~/.ssh/config
 
-ssh-keygen -t rsa -C "easy ssh"
+rsa_file="$HOME/.ssh/id_ed25519"
 
-➜ ssh-copy-id -i ~/.ssh/id_ed25519.pub $name
+if [ ! -f "$rsa_file" ]; then
+ssh-keygen -t ed25519  
+fi
+
+ssh-copy-id -i ~/.ssh/id_ed25519.pub $name
 
 echo "done!"
