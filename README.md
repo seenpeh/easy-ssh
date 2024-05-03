@@ -1,6 +1,6 @@
 # easy-ssh
 
-i works on macos. didn't try on anything else.
+It worked on macos. didn't try on anything else.
 
 Add a Host name:
   ip: enter you ipv4
